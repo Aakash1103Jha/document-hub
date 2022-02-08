@@ -1,8 +1,38 @@
-import React from "react"
+import React, { lazy, Suspense } from "react"
+import { Routes, Route } from "react-router-dom"
+
 import styles from "./App.module.css"
+import Wrapper from "./components/Wrapper/Wrapper"
+
+const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
+const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 
 const App = () => {
-	return <div className={styles.App}>🚀</div>
+	return (
+		<div className={styles.App}>
+			<Wrapper>
+				<Routes>
+					<Route
+						exact
+						path="/"
+						element={
+							<Suspense fallback={"Loading.."}>
+								<Homepage />
+							</Suspense>
+						}
+					/>
+					<Route
+						path="*"
+						element={
+							<Suspense fallback={"Loading.."}>
+								<NotFound />
+							</Suspense>
+						}
+					/>
+				</Routes>
+			</Wrapper>
+		</div>
+	)
 }
 
 export default App

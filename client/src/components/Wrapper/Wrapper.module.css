@@ -1,0 +1,6 @@
+.wrapper {
+	background: var(--white);
+	width: 100%;
+	max-width: 1024px;
+	min-height: 100vh;
+}
