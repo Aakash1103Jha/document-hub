@@ -1,0 +1,19 @@
+.homepage {
+}
+.hero {
+	background: var(--white);
+	color: var(--gray);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 3rem 0rem;
+}
+.hero h1,
+.hero p {
+	text-align: center;
+}
+.hero h1 {
+	font-size: 3rem;
+}
