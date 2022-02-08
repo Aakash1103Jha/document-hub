@@ -4,3 +4,4 @@ client/build
 node_modules
 *.rest
 *.env
+dist
