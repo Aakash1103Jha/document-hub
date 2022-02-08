@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom"
 
 import styles from "./App.module.css"
 import Wrapper from "./components/Wrapper/Wrapper"
+import Loader from "./components/Loader/Loader"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
@@ -16,7 +17,7 @@ const App = () => {
 						exact
 						path="/"
 						element={
-							<Suspense fallback={"Loading.."}>
+							<Suspense fallback={<Loader />}>
 								<Homepage />
 							</Suspense>
 						}
@@ -24,7 +25,7 @@ const App = () => {
 					<Route
 						path="*"
 						element={
-							<Suspense fallback={"Loading.."}>
+							<Suspense fallback={<Loader />}>
 								<NotFound />
 							</Suspense>
 						}

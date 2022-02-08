@@ -1,0 +1,48 @@
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	transform: translate(-50%, -50%);
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+.loader_element {
+	height: 4rem;
+	width: 4rem;
+	background: var(--gray);
+	border-radius: 50%;
+	animation: motion 3s infinite cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.p {
+	margin-top: 1rem;
+	color: var(--gray);
+	font-weight: 300;
+	font-size: 1.5rem;
+}
+
+@keyframes motion {
+	0% {
+		transform: translateX(0) scale(1);
+	}
+	25% {
+		transform: translateX(-50px) scale(0.3);
+	}
+	50% {
+		transform: translateX(0) scale(1);
+	}
+	75% {
+		transform: translateX(50px) scale(0.3);
+	}
+	100% {
+		transform: translateX(0) scale(1);
+	}
+}
