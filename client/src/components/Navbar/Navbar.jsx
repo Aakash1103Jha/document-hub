@@ -3,18 +3,12 @@ import { NavLink } from "react-router-dom"
 
 import Wrapper from "../Wrapper/Wrapper"
 import styles from "./Navbar.module.css"
+import { InlineWraperStyles } from "../../assets/js/inlineWrapperStyles"
 
 const Navbar = () => {
 	return (
 		<nav className={styles.nav}>
-			<Wrapper
-				style={{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "space-between",
-					height: "100%",
-					background: "transparent",
-				}}>
+			<Wrapper style={InlineWraperStyles}>
 				<div className={styles.logo}>Logo</div>
 				<ul className={styles.links}>
 					<li className={styles.link}>
