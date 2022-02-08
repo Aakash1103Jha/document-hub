@@ -1,13 +1,18 @@
 .homepage {
+	padding: 1rem;
+	min-height: calc(100vh - 9rem);
 }
-.hero {
-	background: var(--white);
-	color: var(--gray);
+.hero,
+.row {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+}
+.hero {
+	background: var(--white);
+	color: var(--gray);
 	padding: 3rem 0rem;
 }
 .hero h1,
@@ -16,4 +21,16 @@
 }
 .hero h1 {
 	font-size: 3rem;
+}
+.row {
+	align-items: flex-start;
+	margin-bottom: 2rem;
+}
+.h2 {
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+.p {
+	line-height: var(--line-height-body);
+	font-weight: 300;
 }

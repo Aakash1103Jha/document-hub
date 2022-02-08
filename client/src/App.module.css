@@ -1,6 +1,7 @@
 :root {
 	--title: "bold";
 	--body: "regular";
+	--line-height-body: 1.5rem;
 	--smoke: #f4f4f4;
 	--blue: #0095c7;
 	--yellow: #ffd775;
@@ -8,6 +9,7 @@
 	--gray: #232323;
 	--light-gray: #323330;
 	--transition: 0.3s ease-in-out;
+	--gradient: linear-gradient(to right, red, orange, var(--yellow), var(--blue));
 }
 * {
 	padding: 0;
@@ -22,5 +24,5 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: var(--smoke);
+	/* background: var(--smoke); */
 }

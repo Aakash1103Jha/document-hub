@@ -1,7 +1,8 @@
 .nav,
 .logo,
 .links,
-.link {
+.link,
+.icon {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -26,6 +27,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	font-size: 2rem;
+	font-weight: 700;
+}
+.special {
+	font-weight: 300;
 }
 .links {
 	justify-content: flex-end;
@@ -47,4 +53,17 @@
 }
 .a.active {
 	font-weight: 500;
+}
+.icon {
+	height: 2rem;
+	width: 2rem;
+}
+.icon svg {
+	color: var(--light-gray);
+	height: 100%;
+	width: 100%;
+	transition: var(--transition);
+}
+.icon:hover svg {
+	color: var(--yellow);
 }

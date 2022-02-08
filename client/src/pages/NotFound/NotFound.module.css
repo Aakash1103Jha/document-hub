@@ -1,5 +1,5 @@
 .notfound {
-	min-height: 100vh;
+	min-height: calc(100vh - 9rem);
 	color: var(--gray);
 	word-wrap: break-word;
 	padding: 1rem;
