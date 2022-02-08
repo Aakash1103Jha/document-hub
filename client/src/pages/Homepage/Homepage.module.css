@@ -18,9 +18,10 @@
 .hero h1,
 .hero p {
 	text-align: center;
+	word-wrap: break-word;
 }
 .hero h1 {
-	font-size: 3rem;
+	font-size: 4rem;
 }
 .row {
 	align-items: flex-start;

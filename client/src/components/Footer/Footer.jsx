@@ -22,6 +22,7 @@ const Footer = () => {
 						Report Issue
 					</a>
 					<NavLink to="/privacy">Privacy</NavLink>
+					<NavLink to="/register">Register</NavLink>
 				</div>
 			</Wrapper>
 		</footer>

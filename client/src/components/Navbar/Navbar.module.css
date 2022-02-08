@@ -2,7 +2,8 @@
 .logo,
 .links,
 .link,
-.icon {
+.icon,
+.burger {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -19,28 +20,41 @@
 .logo {
 	height: 100%;
 }
-.logo,
-.links {
-	flex: 1;
-}
 .logo {
+	flex: 1;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	font-size: 2rem;
 	font-weight: 700;
 }
+.logo img {
+	margin-right: 0.5rem;
+	height: 2.5rem;
+	width: 2.5rem;
+}
 .special {
 	font-weight: 300;
 }
 .links {
-	justify-content: flex-end;
+	flex: 1;
+	flex-direction: column;
+	justify-content: flex-start;
+	position: absolute;
+	top: 4.6rem;
+	right: 0rem;
+	height: calc(100vh - 9.2rem);
+	width: 50%;
+	background: rgb(244, 244, 244, 0.2);
+	backdrop-filter: blur(20px);
+	--webkit-backdrop-filter: blur(20px);
+	color: --var(gray);
 }
 .link {
+	color: inherit;
 	list-style: none;
 	text-decoration: none;
-	margin-left: 2rem;
-	min-width: 5rem;
+	/* margin-left: 2rem; */
 }
 .a {
 	color: inherit;
@@ -54,16 +68,15 @@
 .a.active {
 	font-weight: 500;
 }
-.icon {
+.burger {
+	flex: 1;
 	height: 2rem;
 	width: 2rem;
+	margin: 0rem 1rem;
+	cursor: pointer;
+	justify-content: flex-end;
 }
-.icon svg {
-	color: var(--light-gray);
-	height: 100%;
-	width: 100%;
-	transition: var(--transition);
-}
-.icon:hover svg {
-	color: var(--yellow);
+.burger svg {
+	color: inherit;
+	height: inherit;
 }

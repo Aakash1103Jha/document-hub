@@ -5,7 +5,7 @@ const Homepage = () => {
 	return (
 		<div className={styles.homepage}>
 			<div className={styles.hero}>
-				<h1>documentHub</h1>
+				<h1>docHub</h1>
 				<p>Documentations for developers, by developers</p>
 			</div>
 			<div className={styles.row}>
