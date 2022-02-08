@@ -1,7 +1,26 @@
 :root {
 	--title: "bold";
 	--body: "regular";
+	--smoke: #f4f4f4;
+	--blue: #0095c7;
+	--yellow: #ffd775;
+	--white: #ffffff;
+	--gray: #232323;
+	--light-gray: #323330;
+	--transition: 0.3s ease-in-out;
 }
 * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 	font-family: "Montserrat", sans-serif;
+	overflow-x: hidden;
+}
+.App {
+	width: 100vw;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: var(--smoke);
 }

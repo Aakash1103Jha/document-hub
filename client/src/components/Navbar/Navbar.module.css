@@ -1,0 +1,50 @@
+.nav,
+.logo,
+.links,
+.link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--yellow);
+}
+.nav {
+	height: 4rem;
+	width: 100%;
+	padding: 0rem 1rem;
+	background: var(--gray);
+}
+.links,
+.link,
+.logo {
+	height: 100%;
+}
+.logo,
+.links {
+	flex: 1;
+}
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.links {
+	justify-content: flex-end;
+}
+.link {
+	list-style: none;
+	text-decoration: none;
+	margin-left: 2rem;
+	min-width: 5rem;
+}
+.a {
+	color: inherit;
+	text-decoration: inherit;
+}
+.a:hover,
+.a:active,
+.a.active {
+	text-decoration: underline;
+}
+.a.active {
+	font-weight: 500;
+}

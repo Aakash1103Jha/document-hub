@@ -12,12 +12,9 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.resolve(__dirname, "client/build")))
-app.get("/api", (req, res) => {
-	res.json({ message: "Hello from server!" })
-})
+app.use(express.static(path.resolve(__dirname, "build")))
 app.get("*", (req, res) => {
-	res.sendFile(path.resolve(__dirname, "client/public", "index.html"))
+	res.sendFile(path.resolve(__dirname, "build", "index.html"))
 })
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

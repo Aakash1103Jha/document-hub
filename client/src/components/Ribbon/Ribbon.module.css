@@ -1,0 +1,5 @@
+.ribbon {
+	height: 0.6rem;
+	background: linear-gradient(to right, red, orange, var(--yellow), var(--blue));
+	width: 100%;
+}
