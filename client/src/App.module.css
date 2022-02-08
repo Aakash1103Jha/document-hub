@@ -1,0 +1,7 @@
+:root {
+	--title: "bold";
+	--body: "regular";
+}
+* {
+	font-family: "Montserrat", sans-serif;
+}
