@@ -1,0 +1,20 @@
+[
+	{
+		"_id": 1,
+		"topic": "React",
+		"name": "Guide for ReactJS",
+		"uploadedBy": "Aakash Jha"
+	},
+	{
+		"_id": 2,
+		"topic": "Flutter",
+		"name": "Flutter cheatsheet",
+		"uploadedBy": "afemalecoder"
+	},
+	{
+		"_id": 3,
+		"topic": "Data science",
+		"name": "Getting started with Data like a Pro",
+		"uploadedBy": "LongLikeShort"
+	}
+]
