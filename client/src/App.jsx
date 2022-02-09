@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react"
+import React, { lazy, Suspense, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import styles from "./App.module.css"
@@ -12,10 +12,15 @@ const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 
 const App = () => {
+	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
+
 	return (
 		<div className={styles.App}>
 			<Ribbon />
-			<Navbar />
+			<Navbar
+				isDropdownVisible={isDropdownVisible}
+				setIsDropdownVisible={setIsDropdownVisible}
+			/>
 			<Wrapper>
 				<Routes>
 					<Route

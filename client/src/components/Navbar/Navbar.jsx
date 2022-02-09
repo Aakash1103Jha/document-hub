@@ -1,4 +1,5 @@
 import React from "react"
+import propTypes from "prop-types"
 import { NavLink } from "react-router-dom"
 
 import Wrapper from "../Wrapper/Wrapper"
@@ -6,7 +7,7 @@ import styles from "./Navbar.module.css"
 import { InlineWraperStyles } from "../../assets/js/inlineWrapperStyles"
 import Logo from "../../assets/svg/logo.png"
 
-const Navbar = () => {
+const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 	return (
 		<nav className={styles.nav}>
 			<Wrapper style={InlineWraperStyles}>
@@ -15,25 +16,55 @@ const Navbar = () => {
 					<span className={styles.special}>doc</span>
 					Hub
 				</div>
-				<ul className={styles.links}>
-					<li className={styles.link}>
-						<NavLink className={styles.a} to="/search">
+				<ul
+					className={
+						isDropdownVisible === false
+							? styles.links + " " + styles.hidden
+							: styles.links
+					}>
+					<li
+						className={
+							isDropdownVisible === false
+								? styles.link + " " + styles.hiddenLink
+								: styles.link
+						}>
+						<NavLink
+							className={styles.a}
+							to="/search"
+							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
 							Search
 						</NavLink>
 					</li>
-					<li className={styles.link}>
-						<NavLink className={styles.a} to="/">
+					<li
+						className={
+							isDropdownVisible === false
+								? styles.link + " " + styles.hiddenLink
+								: styles.link
+						}>
+						<NavLink
+							className={styles.a}
+							to="/"
+							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
 							Home
 						</NavLink>
 					</li>
-					<li className={styles.link}>
-						<NavLink className={styles.a} to="/register">
+					<li
+						className={
+							isDropdownVisible === false
+								? styles.link + " " + styles.hiddenLink
+								: styles.link
+						}>
+						<NavLink
+							className={styles.a}
+							to="/register"
+							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
 							Register
 						</NavLink>
 					</li>
 				</ul>
 				<div className={styles.burger}>
 					<svg
+						onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}
 						xmlns="http://www.w3.org/2000/svg"
 						fill="currentColor"
 						className="bi bi-list"
@@ -48,5 +79,8 @@ const Navbar = () => {
 		</nav>
 	)
 }
-
+Navbar.propTypes = {
+	isNavVisible: propTypes.bool,
+	setIsDropdownVisible: propTypes.func,
+}
 export default Navbar

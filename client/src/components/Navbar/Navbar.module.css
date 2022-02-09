@@ -43,18 +43,28 @@
 	position: absolute;
 	top: 4.6rem;
 	right: 0rem;
-	height: calc(100vh - 9.2rem);
-	width: 50%;
-	background: rgb(244, 244, 244, 0.2);
+	height: 50vh;
+	width: 100%;
+	background: var(--yellow);
 	backdrop-filter: blur(20px);
 	--webkit-backdrop-filter: blur(20px);
-	color: --var(gray);
+	color: var(--gray);
+	animation: showDropDown 0.7s ease-in-out forwards;
+}
+.links.hidden {
+	display: none;
 }
 .link {
 	color: inherit;
 	list-style: none;
 	text-decoration: none;
+	animation: showDropDownLinks 1s ease-in-out forwards;
+	overflow: hidden;
 	/* margin-left: 2rem; */
+}
+.link.hiddenLink {
+	display: none;
+	opacity: 0;
 }
 .a {
 	color: inherit;
@@ -73,10 +83,31 @@
 	height: 2rem;
 	width: 2rem;
 	margin: 0rem 1rem;
-	cursor: pointer;
 	justify-content: flex-end;
 }
 .burger svg {
+	cursor: pointer;
 	color: inherit;
 	height: inherit;
+}
+
+@keyframes showDropDown {
+	from {
+		height: 0rem;
+		transform: translateY(150%);
+	}
+	to {
+		height: 50vh;
+		transform: translateY(0%);
+	}
+}
+@keyframes showDropDownLinks {
+	from {
+		display: none;
+		opacity: 0;
+	}
+	to {
+		display: flex;
+		opacity: 1;
+	}
 }
