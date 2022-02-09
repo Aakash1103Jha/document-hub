@@ -1,6 +1,6 @@
 .homepage {
 	padding: 1rem;
-	min-height: calc(100vh - 9.2rem);
+	min-height: var(--min-height);
 }
 .hero,
 .row {
@@ -27,6 +27,10 @@
 	align-items: flex-start;
 	margin-bottom: 2rem;
 }
+.row.icon {
+	flex-direction: row;
+	background-color: rebeccapurple;
+}
 .h2 {
 	font-weight: 500;
 	margin-bottom: 1rem;
@@ -34,4 +38,16 @@
 .p {
 	line-height: var(--line-height-body);
 	font-weight: 300;
+	transition: var(--transition);
+}
+.a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+	text-decoration: inherit;
+	width: 100%;
+}
+.a:hover {
+	text-decoration: underline;
 }

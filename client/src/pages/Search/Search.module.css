@@ -1,0 +1,31 @@
+.search {
+	min-height: var(--min-height);
+	background: var(--white);
+	padding: 1rem;
+	color: var(--gray);
+}
+.search_field {
+	background-color: transparent;
+	margin: 1rem 0rem;
+	border: 2px solid var(--smoke);
+	display: flex;
+	align-items: center;
+}
+.search_field input {
+	padding: 1rem;
+	width: 100%;
+	border: none;
+}
+.search_field input:focus {
+	outline: none;
+}
+.search_icon {
+	color: inherit;
+	width: 3rem;
+	padding: 0.6rem;
+	cursor: pointer;
+	transition: var(--transition);
+}
+.search_icon:hover {
+	background: var(--yellow);
+}

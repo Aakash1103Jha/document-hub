@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
+const Search = lazy(() => import("./pages/Search/Search"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
@@ -29,6 +30,15 @@ const App = () => {
 						element={
 							<Suspense fallback={<Loader />}>
 								<Homepage />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/search"
+						element={
+							<Suspense fallback={<Loader />}>
+								<Search />
 							</Suspense>
 						}
 					/>

@@ -13,6 +13,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static(path.resolve(__dirname, "build")))
+app.get("/api", (req, res) => {
+	res.json("🚀")
+})
 app.get("*", (req, res) => {
 	res.sendFile(path.resolve(__dirname, "build", "index.html"))
 })
