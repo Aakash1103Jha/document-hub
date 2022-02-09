@@ -2,7 +2,17 @@ require("webpack")
 const path = require("path")
 const nodeExternals = require("webpack-node-externals")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const VENDORS = ["cors", "dotenv", "express", "regenerator-runtime", "mongoose"]
+
+const VENDORS = [
+	"cors",
+	"dotenv",
+	"express",
+	"regenerator-runtime",
+	"mongoose",
+	"bcrypt",
+	"cookie-parser",
+	"jsonwebtoken",
+]
 
 module.exports = {
 	mode: "production",
