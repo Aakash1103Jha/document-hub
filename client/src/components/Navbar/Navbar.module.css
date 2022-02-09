@@ -50,6 +50,7 @@
 	--webkit-backdrop-filter: blur(20px);
 	color: var(--gray);
 	animation: showDropDown 0.7s ease-in-out forwards;
+	overflow: hidden;
 }
 .links.hidden {
 	display: none;
@@ -94,11 +95,9 @@
 @keyframes showDropDown {
 	from {
 		height: 0rem;
-		transform: translateY(150%);
 	}
 	to {
 		height: 50vh;
-		transform: translateY(0%);
 	}
 }
 @keyframes showDropDownLinks {
