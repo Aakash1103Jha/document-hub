@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "/app/dist/main-*.js",
 		"dev": "nodemon index.js",
-		"build": "CI=false && webpack --config webpack.config.js",
+		"build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
 		"local": "node ./dist/main-*.js"
 	},
 	"keywords": [
