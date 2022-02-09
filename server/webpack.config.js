@@ -7,12 +7,12 @@ const VENDORS = ["cors", "dotenv", "express", "regenerator-runtime", "mongoose"]
 module.exports = {
 	mode: "production",
 	entry: {
-		main: "./index.js",
+		main: "./server/index.js",
 		vendor: VENDORS,
 	},
 	output: {
 		filename: "[name]-[contenthash].js",
-		path: path.resolve(__dirname, "dist"),
+		path: path.resolve(__dirname, "..", "dist"),
 	},
 	target: "node",
 	node: {

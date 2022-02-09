@@ -2,13 +2,13 @@
 	"name": "document-hub",
 	"version": "1.0.0",
 	"description": "A document hub for developers to add their documentations and guides",
-	"main": "index.js",
+	"main": "./server/index.js",
 	"scripts": {
 		"prepare": "npm run build && cd ./client && npm run build && mv build ../dist/",
-    "build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
-    "local": "npm run prepare && node dist/main-*.js",
+		"build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
+		"local": "npm run prepare && node dist/main-*.js",
 		"start": "npm run prepare && node /app/dist/main-*.js",
-		"dev": "nodemon index.js"
+		"dev": "nodemon ./server/index.js"
 	},
 	"keywords": [
 		"reactjs",
@@ -18,6 +18,7 @@
 	"author": "Aakash Jha <thedevdesigner@gmail.com> (https://www.thedevdesigner.com/)",
 	"license": "ISC",
 	"dependencies": {
+		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
 		"express": "^4.17.2",
