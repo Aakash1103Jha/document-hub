@@ -5,8 +5,8 @@
 	"main": "./server/index.js",
 	"scripts": {
 		"prepare": "npm run build && cd ./client && npm run build && mv build ../dist/",
-		"build": "CI=false && webpack --config ./server/webpack.config.js",
-		"local": "npm run prepare && node dist/main-*.js",
+    "build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
+    "local": "npm run prepare && node dist/main-*.js",
 		"start": "npm run prepare && node /app/dist/main-*.js",
 		"dev": "nodemon ./server/index.js"
 	},
