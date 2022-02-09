@@ -8,7 +8,8 @@
 		"build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
 		"local": "npm run prepare && node dist/main-*.js",
 		"start": "npm run prepare && node /app/dist/main-*.js",
-		"dev": "nodemon ./server/index.js"
+		"dev": "nodemon ./server/index.js",
+		"test": "jest"
 	},
 	"keywords": [
 		"reactjs",
@@ -18,10 +19,12 @@
 	"author": "Aakash Jha <thedevdesigner@gmail.com> (https://www.thedevdesigner.com/)",
 	"license": "ISC",
 	"dependencies": {
+		"bcrypt": "^5.0.1",
 		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
 		"express": "^4.17.2",
+		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.2.1",
 		"regenerator-runtime": "^0.13.9"
 	},
@@ -30,6 +33,7 @@
 		"@babel/preset-env": "^7.16.4",
 		"babel-loader": "^8.2.3",
 		"clean-webpack-plugin": "^4.0.0",
+		"jest": "^27.5.1",
 		"nodemon": "^2.0.15",
 		"webpack": "^5.68.0",
 		"webpack-cli": "^4.9.2",
