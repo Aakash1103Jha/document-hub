@@ -1,19 +1,53 @@
 .homepage {
+	padding: 1rem;
+	min-height: var(--min-height);
 }
-.hero {
-	background: var(--white);
-	color: var(--gray);
+.hero,
+.row {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+}
+.hero {
+	background: var(--white);
+	color: var(--gray);
 	padding: 3rem 0rem;
 }
 .hero h1,
 .hero p {
 	text-align: center;
+	word-wrap: break-word;
 }
 .hero h1 {
-	font-size: 3rem;
+	font-size: 4rem;
+}
+.row {
+	align-items: flex-start;
+	margin-bottom: 2rem;
+}
+.row.icon {
+	flex-direction: row;
+	background-color: rebeccapurple;
+}
+.h2 {
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+.p {
+	line-height: var(--line-height-body);
+	font-weight: 300;
+	transition: var(--transition);
+}
+.a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+	text-decoration: inherit;
+	width: 100%;
+}
+.a:hover {
+	text-decoration: underline;
 }

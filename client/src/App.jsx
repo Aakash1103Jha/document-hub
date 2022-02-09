@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react"
+import React, { lazy, Suspense, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import styles from "./App.module.css"
@@ -10,12 +10,18 @@ import Footer from "./components/Footer/Footer"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
+const Search = lazy(() => import("./pages/Search/Search"))
 
 const App = () => {
+	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
+
 	return (
 		<div className={styles.App}>
 			<Ribbon />
-			<Navbar />
+			<Navbar
+				isDropdownVisible={isDropdownVisible}
+				setIsDropdownVisible={setIsDropdownVisible}
+			/>
 			<Wrapper>
 				<Routes>
 					<Route
@@ -24,6 +30,15 @@ const App = () => {
 						element={
 							<Suspense fallback={<Loader />}>
 								<Homepage />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/search"
+						element={
+							<Suspense fallback={<Loader />}>
+								<Search />
 							</Suspense>
 						}
 					/>

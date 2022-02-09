@@ -4,10 +4,11 @@
 	"description": "A document hub for developers to add their documentations and guides",
 	"main": "index.js",
 	"scripts": {
-		"start": "/app/dist/main-*.js",
-		"dev": "nodemon index.js",
-		"build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
-		"local": "node ./dist/main-*.js"
+		"prepare": "npm run build && cd ./client && npm run build && mv build ../dist/",
+    "build": "CI=false && webpack --config webpack.config.js && cd ./client && npm i && npm run build",
+    "local": "npm run prepare && node dist/main-*.js",
+		"start": "npm run prepare && node /app/dist/main-*.js",
+		"dev": "nodemon index.js"
 	},
 	"keywords": [
 		"reactjs",
@@ -20,14 +21,15 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
 		"express": "^4.17.2",
+		"mongoose": "^6.2.1",
 		"regenerator-runtime": "^0.13.9"
 	},
 	"devDependencies": {
-		"nodemon": "^2.0.15",
 		"@babel/core": "^7.16.0",
 		"@babel/preset-env": "^7.16.4",
 		"babel-loader": "^8.2.3",
 		"clean-webpack-plugin": "^4.0.0",
+		"nodemon": "^2.0.15",
 		"webpack": "^5.68.0",
 		"webpack-cli": "^4.9.2",
 		"webpack-node-externals": "^3.0.0"

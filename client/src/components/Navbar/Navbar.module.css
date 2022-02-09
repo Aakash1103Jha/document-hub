@@ -1,7 +1,9 @@
 .nav,
 .logo,
 .links,
-.link {
+.link,
+.icon,
+.burger {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -18,23 +20,52 @@
 .logo {
 	height: 100%;
 }
-.logo,
-.links {
-	flex: 1;
-}
 .logo {
+	flex: 1;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	font-size: 2rem;
+	font-weight: 700;
+}
+.logo img {
+	margin-right: 0.5rem;
+	height: 2.5rem;
+	width: 2.5rem;
+}
+.special {
+	font-weight: 300;
 }
 .links {
-	justify-content: flex-end;
+	flex: 1;
+	flex-direction: column;
+	justify-content: flex-start;
+	position: absolute;
+	top: 4.6rem;
+	right: 0rem;
+	height: 50vh;
+	width: 100%;
+	background: var(--yellow);
+	backdrop-filter: blur(20px);
+	--webkit-backdrop-filter: blur(20px);
+	color: var(--gray);
+	animation: showDropDown 0.7s ease-in-out forwards;
+	overflow: hidden;
+}
+.links.hidden {
+	display: none;
 }
 .link {
+	color: inherit;
 	list-style: none;
 	text-decoration: none;
-	margin-left: 2rem;
-	min-width: 5rem;
+	animation: showDropDownLinks 1s ease-in-out forwards;
+	overflow: hidden;
+	/* margin-left: 2rem; */
+}
+.link.hiddenLink {
+	display: none;
+	opacity: 0;
 }
 .a {
 	color: inherit;
@@ -47,4 +78,35 @@
 }
 .a.active {
 	font-weight: 500;
+}
+.burger {
+	flex: 1;
+	height: 2rem;
+	width: 2rem;
+	margin: 0rem 1rem;
+	justify-content: flex-end;
+}
+.burger svg {
+	cursor: pointer;
+	color: inherit;
+	height: inherit;
+}
+
+@keyframes showDropDown {
+	from {
+		height: 0rem;
+	}
+	to {
+		height: 50vh;
+	}
+}
+@keyframes showDropDownLinks {
+	from {
+		display: none;
+		opacity: 0;
+	}
+	to {
+		display: flex;
+		opacity: 1;
+	}
 }

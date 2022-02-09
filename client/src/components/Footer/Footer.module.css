@@ -1,6 +1,5 @@
 .footer,
-.row,
-.icon {
+.row {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -8,10 +7,10 @@
 }
 .footer {
 	background: var(--white);
-	height: fit-content;
 	width: 100%;
 	border-top: 1px solid var(--smoke);
 	padding: 1rem 0rem;
+	height: 4rem;
 }
 .row {
 	width: 100%;
@@ -19,18 +18,9 @@
 .row a {
 	text-decoration: none;
 	color: inherit;
+	margin: 0rem 1rem;
 }
 .row a:hover,
 .row a:active {
 	text-decoration: underline;
-}
-.icon {
-	color: var(--light-gray);
-	height: 2.5rem;
-	width: 2.5rem;
-	margin-bottom: 1rem;
-}
-.icon svg {
-	height: 100%;
-	width: 100%;
 }
