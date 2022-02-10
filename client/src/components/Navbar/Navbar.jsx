@@ -15,7 +15,7 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 					<NavLink
 						className={styles.a}
 						to="/"
-						onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+						onClick={setIsDropdownVisible.bind(null, false)}>
 						<img src={Logo} alt="docHub" />
 					</NavLink>
 					<span className={styles.special}>doc</span>

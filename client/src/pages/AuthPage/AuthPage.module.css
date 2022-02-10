@@ -21,13 +21,17 @@
 	max-width: 500px;
 	background: inherit;
 }
-.form input {
+.input {
 	margin: 0.5rem 0rem 1rem 0rem;
 	padding: 0.6rem;
 	border: 1px var(--smoke) solid;
+	border: 1px solid var(--light-gray);
 }
-.form input:focus {
-	outline: 1px solid var(--light-gray);
+.input:focus {
+	outline: 1px solid var(--gray);
+}
+.input.error {
+	background: rgb(255, 0, 0, 0.2);
 }
 .authBtn {
 	padding: 0.5rem;
@@ -37,6 +41,8 @@
 	cursor: pointer;
 	font-size: 0.8rem;
 	color: var(--smoke);
+	margin-top: 1rem;
+	border: 1px solid var(--light-gray);
 }
 
 .authBtn:hover,
