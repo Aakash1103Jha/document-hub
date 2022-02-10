@@ -48,7 +48,9 @@ const AuthPage = () => {
 						value={password}
 						onChange={(event) => setPassword(event.target.value)}
 					/>
-					<button type="button">{path === "login" ? "Login" : "Register"}</button>
+					<button className={styles.authBtn} type="button">
+						{path === "login" ? "Login" : "Register"}
+					</button>
 				</form>
 			</div>
 		</div>

@@ -29,3 +29,18 @@
 .form input:focus {
 	outline: 1px solid var(--light-gray);
 }
+.authBtn {
+	padding: 0.5rem;
+	border: 1px solid var(--smoke);
+	background: var(--white);
+	transition: var(--transition);
+	cursor: pointer;
+	font-size: 0.8rem;
+}
+.authBtn:hover {
+	border: 1px solid var(--light-gray);
+}
+.authBtn:active {
+	color: var(--smoke);
+	background: var(--light-gray);
+}
