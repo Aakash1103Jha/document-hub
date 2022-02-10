@@ -1,0 +1,9 @@
+.required {
+	font-weight: 500;
+	color: red;
+}
+.label,
+.info {
+	display: flex;
+	align-items: center;
+}

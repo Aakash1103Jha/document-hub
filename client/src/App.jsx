@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer"
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 const Search = lazy(() => import("./pages/Search/Search"))
+const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
@@ -39,6 +40,24 @@ const App = () => {
 						element={
 							<Suspense fallback={<Loader />}>
 								<Search />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/login"
+						element={
+							<Suspense fallback={<Loader />}>
+								<AuthPage />
+							</Suspense>
+						}
+					/>
+					<Route
+						exact
+						path="/register"
+						element={
+							<Suspense fallback={<Loader />}>
+								<AuthPage />
 							</Suspense>
 						}
 					/>
