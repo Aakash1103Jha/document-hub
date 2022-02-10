@@ -30,19 +30,6 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 						}>
 						<NavLink
 							className={styles.a}
-							to="/search"
-							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
-							Search
-						</NavLink>
-					</li>
-					<li
-						className={
-							isDropdownVisible === false
-								? styles.link + " " + styles.hiddenLink
-								: styles.link
-						}>
-						<NavLink
-							className={styles.a}
 							to="/"
 							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
 							Home
@@ -56,9 +43,23 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 						}>
 						<NavLink
 							className={styles.a}
-							to="/register"
+							to="/search"
 							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
-							Register
+							Search
+						</NavLink>
+					</li>
+
+					<li
+						className={
+							isDropdownVisible === false
+								? styles.link + " " + styles.hiddenLink
+								: styles.link
+						}>
+						<NavLink
+							className={styles.a}
+							to="/login"
+							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+							Login
 						</NavLink>
 					</li>
 				</ul>

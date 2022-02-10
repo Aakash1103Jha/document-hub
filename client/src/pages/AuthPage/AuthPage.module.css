@@ -1,0 +1,31 @@
+.authpage {
+	padding: 1rem;
+	min-height: var(--min-height);
+	background: var(--white);
+	color: var(--gray);
+}
+.header {
+	margin-bottom: 1rem;
+}
+.authForm {
+	background-color: s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: inherit;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 500px;
+	background: inherit;
+}
+.form input {
+	margin: 0.5rem 0rem 1rem 0rem;
+	padding: 0.6rem;
+	border: 1px var(--smoke) solid;
+}
+.form input:focus {
+	outline: 1px solid var(--light-gray);
+}

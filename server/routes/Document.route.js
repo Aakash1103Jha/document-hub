@@ -1,6 +1,7 @@
 const router = require("express").Router()
-const { getAllDocuments } = require("../controllers/Document.controller")
+const { getAllDocuments, getDocsByTopic } = require("../controllers/Document.controller")
 
-router.post("/", getAllDocuments)
+// router.get("/", getAllDocuments)
+router.get("/search?", getDocsByTopic)
 
 module.exports = router

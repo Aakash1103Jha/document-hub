@@ -1,14 +1,9 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 
 import styles from "./Homepage.module.css"
 
-import { getDocuments } from "./Homepage.services"
-
 const Homepage = () => {
-	useEffect(() => {
-		getDocuments()
-	})
 	return (
 		<div className={styles.homepage}>
 			<div className={styles.hero}>
