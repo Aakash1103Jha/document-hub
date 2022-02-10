@@ -10,7 +10,7 @@ const onLogin = async (req, res) => {
 		const user = await User.findOne({ email: email })
 		if (!user) return res.status(401).json("User not found")
 		const validPassword = await compare(password, user.password)
-		if (!validPassword) res.status(401).json("Invalid password")
+		if (!validPassword) return res.status(401).json("Invalid password")
 		const token = sign({ _id: user._id }, process.env.TOKEN_SECRET, {
 			expiresIn: "1d",
 			noTimestamp: false,

@@ -1,0 +1,9 @@
+.message {
+	background-color: var(--white);
+	text-align: center;
+	font-weight: 300;
+	word-wrap: break-word;
+}
+.error {
+	color: red;
+}
