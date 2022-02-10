@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import styles from "./Search.module.css"
 
+import Card from "../../components/Card/Card"
 import { getSearchData } from "./Search.services"
 
 const Search = () => {
@@ -35,11 +36,7 @@ const Search = () => {
 			<>
 				{results &&
 					results.map((item) => {
-						return (
-							<div key={item._id}>
-								<h2>{item.name}</h2>
-							</div>
-						)
+						return <Card key={item._id} title={item.name} owner={item.uploadedBy} />
 					})}
 			</>
 		</div>
