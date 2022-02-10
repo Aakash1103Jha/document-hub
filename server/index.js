@@ -15,21 +15,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.COOKIE_SECRET))
 // for local deployment
-// app.use(express.static(path.resolve(__dirname, "..", "client", "build")))
+app.use(express.static(path.resolve(__dirname, "..", "client", "build")))
 // for production deployment
-app.use(express.static(path.resolve(__dirname, "..", "dist", "build")))
+// app.use(express.static(path.resolve(__dirname, "..", "dist", "build")))
 
 const UserRoute = require("./routes/User.route")
 const DocumentRoute = require("./routes/Document.route")
 
 app.use("/auth/", UserRoute)
-app.use("/doc/", DocumentRoute)
+app.use("/docs/", DocumentRoute)
 
 app.get("*", (req, res) => {
 	// for local deployment
-	// res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"))
+	res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"))
 	// for production deployment
-	res.sendFile(path.resolve(__dirname, "..", "dist", "build", "index.html"))
+	// res.sendFile(path.resolve(__dirname, "..", "dist", "build", "index.html"))
 })
 
 connectToDb()
