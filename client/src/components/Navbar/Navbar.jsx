@@ -12,7 +12,12 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 		<nav className={styles.nav}>
 			<Wrapper style={InlineWraperStyles}>
 				<div className={styles.logo}>
-					<img src={Logo} alt="docHub" />
+					<NavLink
+						className={styles.a}
+						to="/"
+						onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+						<img src={Logo} alt="docHub" />
+					</NavLink>
 					<span className={styles.special}>doc</span>
 					Hub
 				</div>

@@ -70,6 +70,8 @@
 .a {
 	color: inherit;
 	text-decoration: inherit;
+	display: flex;
+	align-items: center;
 }
 .a:hover,
 .a:active,

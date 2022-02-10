@@ -31,16 +31,16 @@
 }
 .authBtn {
 	padding: 0.5rem;
-	border: 1px solid var(--smoke);
-	background: var(--white);
+	border: none;
+	background: var(--light-gray);
 	transition: var(--transition);
 	cursor: pointer;
 	font-size: 0.8rem;
-}
-.authBtn:hover {
-	border: 1px solid var(--light-gray);
-}
-.authBtn:active {
 	color: var(--smoke);
-	background: var(--light-gray);
+}
+
+.authBtn:hover,
+.authBtn:active {
+	color: var(--white);
+	background: var(--gray);
 }
