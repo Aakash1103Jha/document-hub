@@ -37,7 +37,9 @@ const Search = () => {
 			<>
 				{results &&
 					results.map((item) => {
-						return <Card key={item._id} title={item.name} owner={item.uploadedBy} />
+						return (
+							<Card key={item._id} title={item.name} owner={item.uploadedBy.name} />
+						)
 					})}
 			</>
 		</div>
