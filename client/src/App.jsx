@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader"
 import Ribbon from "./components/Ribbon/Ribbon"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
+
 import { AuthContext } from "./context/AuthContext"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
@@ -16,7 +17,7 @@ const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
-	const { checkRememberMe, isLoggedIn } = useContext(AuthContext)
+	const { checkRememberMe } = useContext(AuthContext)
 
 	useEffect(() => {
 		checkRememberMe()
@@ -28,11 +29,11 @@ const App = () => {
 			<Navbar
 				isDropdownVisible={isDropdownVisible}
 				setIsDropdownVisible={setIsDropdownVisible}
-				isLoggedIn={isLoggedIn}
 			/>
 			<Wrapper>
 				<Routes>
 					<Route
+						key="home_"
 						exact
 						path="/"
 						element={
@@ -42,6 +43,7 @@ const App = () => {
 						}
 					/>
 					<Route
+						key="search_"
 						exact
 						path="/search"
 						element={
@@ -51,6 +53,7 @@ const App = () => {
 						}
 					/>
 					<Route
+						key="login_"
 						exact
 						path="/login"
 						element={
@@ -60,6 +63,7 @@ const App = () => {
 						}
 					/>
 					<Route
+						key="register_"
 						exact
 						path="/register"
 						element={
@@ -68,6 +72,17 @@ const App = () => {
 							</Suspense>
 						}
 					/>
+					{/* Private routes for logged in users */}
+					{/* <Route
+						key="profile_"
+						path="/profile"
+						element={
+							<Suspense fallback={<Loader />}>
+								<h1>Profile</h1>
+							</Suspense>
+						}
+					/> */}
+
 					<Route
 						path="*"
 						element={

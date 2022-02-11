@@ -59,3 +59,15 @@
 .rememberme input {
 	margin-right: 0.5rem;
 }
+.authCta {
+	margin-top: 1rem;
+	text-align: center;
+	color: var(--light-gray);
+}
+.authCta a {
+	color: inherit;
+	padding: 0rem 0.2rem;
+}
+.authCta a:hover {
+	color: var(--gray);
+}
