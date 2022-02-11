@@ -50,3 +50,12 @@
 	color: var(--white);
 	background: var(--gray);
 }
+.rememberme {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+}
+.rememberme input {
+	margin-right: 0.5rem;
+}

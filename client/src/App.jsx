@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from "react"
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 
 import styles from "./App.module.css"
@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader"
 import Ribbon from "./components/Ribbon/Ribbon"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
+import { AuthContext } from "./context/AuthContext"
 
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
@@ -15,6 +16,11 @@ const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
+	const { checkRememberMe, isLoggedIn } = useContext(AuthContext)
+
+	useEffect(() => {
+		checkRememberMe()
+	})
 
 	return (
 		<div className={styles.App}>
@@ -22,6 +28,7 @@ const App = () => {
 			<Navbar
 				isDropdownVisible={isDropdownVisible}
 				setIsDropdownVisible={setIsDropdownVisible}
+				isLoggedIn={isLoggedIn}
 			/>
 			<Wrapper>
 				<Routes>

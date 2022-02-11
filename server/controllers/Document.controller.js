@@ -10,6 +10,7 @@ const getAllDocuments = async (req, res) => {
 	}
 }
 const getDocsByTopic = async (req, res) => {
+	console.log(req.signedCookies)
 	if (!req.query.topic) return res.status(404).json("No keyword found for search")
 	const topic = req.query.topic?.toLowerCase()
 	console.log(req.query.topic, topic)
