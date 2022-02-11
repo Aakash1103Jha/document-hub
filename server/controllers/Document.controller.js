@@ -11,7 +11,8 @@ const getAllDocuments = async (req, res) => {
 }
 const getDocsByTopic = async (req, res) => {
 	if (!req.query.topic) return res.status(404).json("No keyword found for search")
-	const topic = req.query.topic
+	const topic = req.query.topic?.toLowerCase()
+	console.log(req.query.topic, topic)
 	try {
 		// const filteredData = data.filter((item) => {
 		// 	return item.topic.toLowerCase() === topic.toLowerCase()

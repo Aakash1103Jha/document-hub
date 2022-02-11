@@ -4,6 +4,7 @@ export const getSearchData = async (term) => {
 	if (!term) return "Enter a topic to search..."
 	try {
 		const res = await axios.get(`/docs/search?topic=${term}`)
+		// console.log(res.data)
 		return res.data
 	} catch (e) {
 		console.error(`Search Error: ${e}`)
