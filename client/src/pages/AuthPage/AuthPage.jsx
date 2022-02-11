@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 
 import Label from "../../components/Label/Label"
+import H1 from "../../components/Headings/H1"
 import { Message } from "../../components/Message/Message"
 
 import styles from "./AuthPage.module.css"
@@ -24,7 +25,7 @@ const AuthPage = () => {
 	return (
 		<div className={styles.authpage}>
 			<header className={styles.header}>
-				<h1>{path.toUpperCase()}</h1>
+				<H1 key="authPage" text={path.toUpperCase()} />
 			</header>
 			<div className={styles.authForm}>
 				<form

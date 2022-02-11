@@ -82,7 +82,7 @@
 	font-weight: 500;
 }
 .burger {
-	flex: 1;
+	/* flex: 1; */
 	height: 2rem;
 	width: 2rem;
 	margin: 0rem 1rem;

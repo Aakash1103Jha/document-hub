@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import styles from "./Search.module.css"
 
 import Card from "../../components/Card/Card"
+import H1 from "../../components/Headings/H1"
 import { getSearchData } from "./Search.services"
 
 const Search = () => {
@@ -11,7 +12,7 @@ const Search = () => {
 
 	return (
 		<div className={styles.search}>
-			<h1>Search</h1>
+			<H1 text="Search" key="search" />
 			<div className={styles.search_field}>
 				<input
 					type="text"
