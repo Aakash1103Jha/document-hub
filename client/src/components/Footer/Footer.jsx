@@ -1,11 +1,15 @@
-import React from "react"
+import React, { useContext } from "react"
 import { NavLink } from "react-router-dom"
+
 import Wrapper from "../Wrapper/Wrapper"
 
 import styles from "./Footer.module.css"
 import { InlineWraperStyles } from "../../assets/js/inlineWrapperStyles"
+import { AuthContext } from "../../context/AuthContext"
 
 const Footer = () => {
+	const { isLoggedIn } = useContext(AuthContext)
+
 	return (
 		<footer className={styles.footer}>
 			<Wrapper
@@ -22,7 +26,7 @@ const Footer = () => {
 						Report Issue
 					</a>
 					<NavLink to="/privacy">Privacy</NavLink>
-					<NavLink to="/register">Register</NavLink>
+					{isLoggedIn === false && <NavLink to="/register">Register</NavLink>}
 				</div>
 			</Wrapper>
 		</footer>

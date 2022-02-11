@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import propTypes from "prop-types"
 import { NavLink } from "react-router-dom"
 
@@ -6,8 +6,10 @@ import Wrapper from "../Wrapper/Wrapper"
 import styles from "./Navbar.module.css"
 import { InlineWraperStyles } from "../../assets/js/inlineWrapperStyles"
 import Logo from "../../assets/svg/logo.png"
+import { AuthContext } from "../../context/AuthContext"
 
-const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
+const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
+	const { onLogout, isLoggedIn } = useContext(AuthContext)
 	return (
 		<nav className={styles.nav}>
 			<Wrapper style={InlineWraperStyles}>
@@ -28,6 +30,7 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
 							: styles.links
 					}>
 					<li
+						key="home_link"
 						className={
 							isDropdownVisible === false
 								? styles.link + " " + styles.hiddenLink
@@ -41,6 +44,7 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
 						</NavLink>
 					</li>
 					<li
+						key="search_link"
 						className={
 							isDropdownVisible === false
 								? styles.link + " " + styles.hiddenLink
@@ -56,6 +60,7 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
 
 					{isLoggedIn === false && (
 						<li
+							key="login_link"
 							className={
 								isDropdownVisible === false
 									? styles.link + " " + styles.hiddenLink
@@ -70,22 +75,38 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
 						</li>
 					)}
 					{isLoggedIn === true && (
-						<li
-							className={
-								isDropdownVisible === false
-									? styles.link + " " + styles.hiddenLink
-									: styles.link
-							}>
-							<NavLink
-								className={styles.a}
-								to="/"
-								onClick={() => {
-									localStorage.removeItem("rememberMe")
-									setIsDropdownVisible(!isDropdownVisible)
-								}}>
-								Logout
-							</NavLink>
-						</li>
+						<>
+							<li
+								className={
+									isDropdownVisible === false
+										? styles.link + " " + styles.hiddenLink
+										: styles.link
+								}>
+								<NavLink
+									className={styles.a}
+									to="/upload"
+									onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+									Upload
+								</NavLink>
+							</li>
+							<li
+								key="logout_link"
+								className={
+									isDropdownVisible === false
+										? styles.link + " " + styles.hiddenLink
+										: styles.link
+								}>
+								<NavLink
+									className={styles.a}
+									to="/"
+									onClick={() => {
+										onLogout()
+										setIsDropdownVisible(!isDropdownVisible)
+									}}>
+									Logout
+								</NavLink>
+							</li>
+						</>
 					)}
 				</ul>
 				<div className={styles.burger}>

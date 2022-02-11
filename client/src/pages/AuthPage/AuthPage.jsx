@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react"
-import { useLocation } from "react-router-dom"
+import React, { useState, useContext, Fragment } from "react"
+import { NavLink, useLocation } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
 
 import Loader from "../../components/Loader/Loader"
@@ -54,7 +54,7 @@ const AuthPage = () => {
 								}}
 							/>
 							{path === "register" && (
-								<>
+								<Fragment key="username_">
 									<Label label="Username" id="username" isMandatory={true} />
 									<input
 										className={
@@ -72,7 +72,7 @@ const AuthPage = () => {
 											setUsername(event.target.value)
 										}}
 									/>
-								</>
+								</Fragment>
 							)}
 							<Label label="Password" id="password" type="info" isMandatory={true} />
 							<input
@@ -91,19 +91,36 @@ const AuthPage = () => {
 									setPassword(event.target.value)
 								}}
 							/>
-							<div className={styles.rememberme}>
-								<input
-									type="checkbox"
-									value={rememberMe}
-									onClick={() => setRememberMe(!rememberMe)}
-								/>
-								Remember Me
-							</div>
+							{path === "login" && (
+								<div className={styles.rememberme} key="remember_me_cta">
+									<input
+										type="checkbox"
+										value={rememberMe}
+										onClick={() => setRememberMe(!rememberMe)}
+									/>
+									Remember Me
+								</div>
+							)}
 
 							<Message message={error} type="error" />
 							<button className={styles.authBtn}>
 								{path === "login" ? "Login" : "Register"}
 							</button>
+							{
+								<div className={styles.authCta}>
+									{path === "login" ? (
+										<Fragment key="register_cta">
+											Not a member?<NavLink to="/register">Register</NavLink>
+											here
+										</Fragment>
+									) : (
+										<Fragment key="login_cta">
+											Already a member?<NavLink to="/login">Login</NavLink>
+											here
+										</Fragment>
+									)}
+								</div>
+							}
 						</form>
 					</div>
 				</>

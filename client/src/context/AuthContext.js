@@ -59,11 +59,15 @@ const AuthContextProvider = ({ children, ...rest }) => {
 		}
 	}
 
-	const onLogout = async () => {}
+	const onLogout = async () => {
+		localStorage.removeItem("rememberMe")
+		setIsLoggedIn(false)
+		return navigate("/")
+	}
 
 	const checkRememberMe = () => {
 		if (flag === "true") return setIsLoggedIn(true)
-		return setIsLoggedIn(false)
+		// return setIsLoggedIn(false)
 	}
 
 	return (
