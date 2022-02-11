@@ -7,7 +7,7 @@ import styles from "./Navbar.module.css"
 import { InlineWraperStyles } from "../../assets/js/inlineWrapperStyles"
 import Logo from "../../assets/svg/logo.png"
 
-const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
+const Navbar = ({ isDropdownVisible, setIsDropdownVisible, isLoggedIn }) => {
 	return (
 		<nav className={styles.nav}>
 			<Wrapper style={InlineWraperStyles}>
@@ -54,19 +54,39 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 						</NavLink>
 					</li>
 
-					<li
-						className={
-							isDropdownVisible === false
-								? styles.link + " " + styles.hiddenLink
-								: styles.link
-						}>
-						<NavLink
-							className={styles.a}
-							to="/login"
-							onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
-							Login
-						</NavLink>
-					</li>
+					{isLoggedIn === false && (
+						<li
+							className={
+								isDropdownVisible === false
+									? styles.link + " " + styles.hiddenLink
+									: styles.link
+							}>
+							<NavLink
+								className={styles.a}
+								to="/login"
+								onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+								Login
+							</NavLink>
+						</li>
+					)}
+					{isLoggedIn === true && (
+						<li
+							className={
+								isDropdownVisible === false
+									? styles.link + " " + styles.hiddenLink
+									: styles.link
+							}>
+							<NavLink
+								className={styles.a}
+								to="/"
+								onClick={() => {
+									localStorage.removeItem("rememberMe")
+									setIsDropdownVisible(!isDropdownVisible)
+								}}>
+								Logout
+							</NavLink>
+						</li>
+					)}
 				</ul>
 				<div className={styles.burger}>
 					<svg
