@@ -11,6 +11,10 @@ const Document = Schema(
 			required: true,
 		},
 		uploadedBy: {
+			name: { type: String, required: true },
+			_userId: { type: String, require: true },
+		},
+		fileName: {
 			type: String,
 			required: true,
 		},

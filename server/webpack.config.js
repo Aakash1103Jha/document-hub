@@ -12,6 +12,7 @@ const VENDORS = [
 	"bcrypt",
 	"cookie-parser",
 	"jsonwebtoken",
+	"multer",
 ]
 
 module.exports = {
