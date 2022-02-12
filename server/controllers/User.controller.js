@@ -46,8 +46,31 @@ const onRegister = async (req, res) => {
 		return res.status(500).json({ Error: err.message })
 	}
 }
+const onResetPassword = async (req, res) => {
+	if (!req.body.password || !req.body.email) return res.status(401).json("No data found")
+	const user = await User.findOne({ email: email })
+	if (!user) return res.status(404).json("User not found")
+	const newPassword = await hash(req.body.password, await genSalt(10))
+	try {
+		await User.findOneAndUpdate(
+			{ email: email },
+			{ $set: { password: newPassword } },
+			{ upsert: false },
+		)
+		return res.status(200).json("Password changed successfully!")
+	} catch (err) {
+		return res.status(500).json({ Error: err.message })
+	}
+}
 const onGetProfile = async (req, res) => {
-	// TODO: User profile
+	if (!req.user.payload._id) return res.status(401).json("Unauthorized user ⛔️")
+	const { _id } = req.user.payload
+	try {
+		const userData = await User.findById({ _id })
+		res.send(userData)
+	} catch (err) {
+		return res.status(500).json({ Error: err.message })
+	}
 }
 
-module.exports = { onLogin, onRegister, onGetProfile }
+module.exports = { onLogin, onRegister, onGetProfile, onResetPassword }
