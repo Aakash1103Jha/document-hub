@@ -72,6 +72,16 @@ const App = () => {
 							</Suspense>
 						}
 					/>
+					<Route
+						key="reset_pass_"
+						exact
+						path="/reset-password"
+						element={
+							<Suspense fallback={<Loader />}>
+								<AuthPage />
+							</Suspense>
+						}
+					/>
 					{/* Private routes for logged in users */}
 					{/* <Route
 						key="profile_"
