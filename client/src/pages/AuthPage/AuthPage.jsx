@@ -112,6 +112,10 @@ const AuthPage = () => {
 										<Fragment key="register_cta">
 											Not a member?<NavLink to="/register">Register</NavLink>
 											here
+											<br />
+											<br />
+											Forgot password?{" "}
+											<NavLink to="/reset-password">Reset</NavLink>here
 										</Fragment>
 									) : (
 										<Fragment key="login_cta">
