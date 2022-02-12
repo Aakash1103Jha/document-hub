@@ -48,9 +48,14 @@ const onRegister = async (req, res) => {
 }
 const onResetPassword = async (req, res) => {
 	if (!req.body.password || !req.body.email) return res.status(401).json("No data found")
-	const user = await User.findOne({ email: email })
-	if (!user) return res.status(404).json("User not found")
-	const newPassword = await hash(req.body.password, await genSalt(10))
+	const { email, password } = req.body
+	try {
+		const user = await User.findOne({ email: email })
+		if (!user) return res.status(404).json("User not found")
+	} catch (err) {
+		return res.status(500).json({ Error: err.message })
+	}
+	const newPassword = await hash(password, await genSalt(10))
 	try {
 		await User.findOneAndUpdate(
 			{ email: email },

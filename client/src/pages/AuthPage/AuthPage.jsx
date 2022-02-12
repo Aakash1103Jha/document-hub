@@ -10,18 +10,41 @@ import { Message } from "../../components/Message/Message"
 import styles from "./AuthPage.module.css"
 
 const AuthPage = () => {
-	const { onLogin, error, setError, isLoading } = useContext(AuthContext)
+	const { onLogin, error, setError, isLoading, onRegister, onResetPassword } =
+		useContext(AuthContext)
 
 	const path = useLocation().pathname.split("/")[1]
 	const [email, setEmail] = useState("")
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
+	const [confPassword, setConfPassword] = useState("")
 	const [rememberMe, setRememberMe] = useState(false)
 
 	const clearFields = () => {
 		setEmail("")
 		setPassword("")
 		setUsername("")
+	}
+	const onSubmitHandler = (event, path) => {
+		console.log(path)
+		switch (path) {
+			case "login":
+				onLogin(event, email, password, rememberMe, clearFields)
+				break
+			case "register":
+				if (password.trim() !== confPassword.trim()) return alert("Password does not match")
+				onRegister(event, username, email, password, clearFields)
+				break
+			case "reset-password":
+				if (password.trim() !== confPassword.trim()) {
+					return alert("Password does not match")
+				}
+				onResetPassword(event, email, password, clearFields)
+				break
+
+			default:
+				break
+		}
 	}
 	return (
 		<div className={styles.authpage}>
@@ -33,9 +56,7 @@ const AuthPage = () => {
 					<div className={styles.authForm}>
 						<form
 							className={styles.form}
-							onSubmit={(event) =>
-								onLogin(event, email, password, rememberMe, clearFields)
-							}>
+							onSubmit={(event) => onSubmitHandler(event, path)}>
 							<Label label="Email" id="email" isMandatory={true} />
 							<input
 								className={
@@ -91,6 +112,32 @@ const AuthPage = () => {
 									setPassword(event.target.value)
 								}}
 							/>
+							{(path === "register" || path === "reset-password") && (
+								<Fragment>
+									<Label
+										label="Confirm Password"
+										id="confPassword"
+										type="info"
+										isMandatory={true}
+									/>
+									<input
+										className={
+											error.length !== 0
+												? styles.input + " " + styles.error
+												: styles.input
+										}
+										type="password"
+										placeholder="Re-enter your password"
+										id="ConfPassword"
+										required
+										value={confPassword}
+										onChange={(event) => {
+											setError("")
+											setConfPassword(event.target.value)
+										}}
+									/>
+								</Fragment>
+							)}
 							{path === "login" && (
 								<div className={styles.rememberme} key="remember_me_cta">
 									<input
@@ -104,11 +151,13 @@ const AuthPage = () => {
 
 							<Message message={error} type="error" />
 							<button className={styles.authBtn}>
-								{path === "login" ? "Login" : "Register"}
+								{path === "login" && "Login"}
+								{path === "register" && "Register"}
+								{path === "reset-password" && "Reset Password"}
 							</button>
 							{
 								<div className={styles.authCta}>
-									{path === "login" ? (
+									{path === "login" && (
 										<Fragment key="register_cta">
 											Not a member?<NavLink to="/register">Register</NavLink>
 											here
@@ -117,7 +166,8 @@ const AuthPage = () => {
 											Forgot password?{" "}
 											<NavLink to="/reset-password">Reset</NavLink>here
 										</Fragment>
-									) : (
+									)}
+									{path === "register" && (
 										<Fragment key="login_cta">
 											Already a member?<NavLink to="/login">Login</NavLink>
 											here

@@ -10,6 +10,7 @@ export const AuthContext = createContext({
 	error: "",
 	setError: () => {},
 	onLogin: (event, email, password, rememberMe, clearFields) => {},
+	onResetPassword: (event, email, password, clearFields) => {},
 	onRegister: (event, username, email, password, clearFields) => {},
 	onLogout: () => {},
 	isLoading: false,
@@ -50,7 +51,23 @@ const AuthContextProvider = ({ children, ...rest }) => {
 		try {
 			const res = await axios.post("/auth/register", { username, email, password })
 			const { status } = res
-			if (!status === 200) return
+			if (status !== 200) return
+			clearFields()
+			return navigate("/login")
+		} catch (err) {
+			console.error(err.message)
+			return setError(err.message)
+		}
+	}
+
+	const onResetPassword = async (event, email, password, clearFields) => {
+		event.preventDefault()
+		if (!email || !password) return setError("Mandatory fields missing")
+		try {
+			const res = await axios.post("/auth/reset-password", { email, password })
+			const { status } = res
+			if (status !== 200) return setError("Something went wrong")
+			alert(res.data)
 			clearFields()
 			return navigate("/login")
 		} catch (err) {
@@ -75,6 +92,7 @@ const AuthContextProvider = ({ children, ...rest }) => {
 			value={{
 				isLoggedIn,
 				onLogin,
+				onResetPassword,
 				onRegister,
 				onLogout,
 				error,
