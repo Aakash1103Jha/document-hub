@@ -1,5 +1,6 @@
 const Document = require("../models/Document")
 const data = require("../helpers/dummyDocs.json")
+const { json } = require("express/lib/response")
 
 const getAllDocuments = async (req, res) => {
 	try {
@@ -10,18 +11,26 @@ const getAllDocuments = async (req, res) => {
 	}
 }
 const getDocsByTopic = async (req, res) => {
-	console.log(req.signedCookies)
 	if (!req.query.topic) return res.status(404).json("No keyword found for search")
 	const topic = req.query.topic?.toLowerCase()
-	console.log(req.query.topic, topic)
 	try {
-		// const filteredData = data.filter((item) => {
-		// 	return item.topic.toLowerCase() === topic.toLowerCase()
-		// })
-		const filteredData = await Document.find({ topic })
-		return res.status(200).json(filteredData)
+		const count = await Document.find({ topic }).count()
+		if (count === 0) return res.status(200).json("No documents for this topic")
+		const data = await Document.find({ topic })
+		return res.status(200).json(data)
 	} catch (err) {
 		return res.status(500).json("Something went wrong while getting document list.")
+	}
+}
+const getOneDocById = async (req, res) => {
+	if (!req.query._id) return res.status(500).json("No document ID found")
+	const { _id } = req.query
+	try {
+		const doc = await Document.findById({ _id })
+		if (!doc) return res.status(404).json("Document does not exist, or has been deleted")
+		return res.status(200).json(doc)
+	} catch (err) {
+		return res.status(500).json("Something went wrong")
 	}
 }
 const onUploadDoc = async (req, res) => {
@@ -44,4 +53,4 @@ const onUploadDoc = async (req, res) => {
 	}
 }
 
-module.exports = { getAllDocuments, getDocsByTopic, onUploadDoc }
+module.exports = { getAllDocuments, getDocsByTopic, onUploadDoc, getOneDocById }
