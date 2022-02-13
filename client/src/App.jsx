@@ -15,6 +15,7 @@ const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 const Search = lazy(() => import("./pages/Search/Search"))
 const SearchDetail = lazy(() => import("./pages/Search/SearchDetail/SearchDetail"))
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
+const ActivateAccount = lazy(() => import("./pages/ActivateAccount/ActivateAccount"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
@@ -100,6 +101,16 @@ const App = () => {
 						element={
 							<Suspense fallback={<Loader />}>
 								<SearchDetail />
+							</Suspense>
+						}
+					/>
+					<Route
+						key="activate_acc_"
+						exact
+						path="/activate/:token"
+						element={
+							<Suspense fallback={<Loader />}>
+								<ActivateAccount />
 							</Suspense>
 						}
 					/>

@@ -32,16 +32,14 @@ const onRegister = async (req, res) => {
 	try {
 		const user = await User.findOne({ email: email })
 		if (user) return res.status(401).json("Email already in use")
-		if (validatePassword(password) === false)
-			return res
-				.status(401)
-				.json(
-					"Password must contain at least 1 uppercase letter, number and special character.",
-				)
-		const hashPassword = await hash(password, await genSalt(10))
-		const newUser = new User({ ...req.body, password: hashPassword })
-		await newUser.save()
-		return res.status(200).json("Successfully registered 🚀")
+		// GENERATE JWT TOKEN WITH ALL USER DATA AND SEND AS ACTIVATION LINK
+		const activationToken = sign({ ...req.body }, process.env.ACTIVATION_TOKEN_SECRET, {
+			expiresIn: "1d",
+			noTimestamp: false,
+		})
+		console.log(activationToken)
+		// LOGIC FOR NODEMAILER ACTIVATION LINK MAIL
+		//
 	} catch (err) {
 		return res.status(500).json({ Error: err.message })
 	}
@@ -77,5 +75,29 @@ const onGetProfile = async (req, res) => {
 		return res.status(500).json({ Error: err.message })
 	}
 }
+const onActivateAccount = async (req, res) => {
+	if (!req.user) return res.status(401).json("Unauthorized user ⛔️")
+	const { username, email, password } = req.user.payload
+	const user = await User.findOne({ email: email })
+	if (user) return res.status(401).json("Email already in use")
+	if (validatePassword(password) === false)
+		return res
+			.status(401)
+			.json(
+				"Password must contain at least 1 uppercase letter, number and special character.",
+			)
+	const hashPassword = await hash(password, await genSalt(10))
+	try {
+		const newUser = new User({ username, email, password: hashPassword })
+		await newUser.save()
+		return res.status(200).json("Account activation completed 🚀")
+	} catch (err) {
+		return res.status(500).json({ Error: err.message })
+	}
+	// validate user jwt token using middleware
+	// if invalid or expired token, do not register account
+	// if valid token, create new user and save in db
+}
+module.exports = { onLogin, onRegister, onGetProfile, onResetPassword, onActivateAccount }
 
-module.exports = { onLogin, onRegister, onGetProfile, onResetPassword }
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFha2FzaDExMDNqaGEiLCJlbWFpbCI6ImFha2FzaC5qaGExMTAzQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiQWFrYXNoamhhQDExMDMiLCJpYXQiOjE2NDQ3NzI2MDQsImV4cCI6MTY0NDg1OTAwNH0.3-hfV7rUUyDHxNEo4OTTbA303ecCfaNaJ3wUI5uEQmk
