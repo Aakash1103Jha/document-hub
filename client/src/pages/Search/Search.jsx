@@ -2,14 +2,13 @@ import React, { useState } from "react"
 
 import styles from "./Search.module.css"
 
-import Card from "../../components/Card/Card"
+import SearchResult from "./SearchResult/SearchResult"
 import H1 from "../../components/Headings/H1"
 import { getSearchData } from "./Search.services"
 
 const Search = () => {
 	const [searchField, setSearchField] = useState("")
 	const [results, setResults] = useState([])
-
 	return (
 		<div className={styles.search}>
 			<H1 text="Search" key="search" />
@@ -35,10 +34,15 @@ const Search = () => {
 				</svg>
 			</div>
 			<>
-				{results &&
-					results.map((item) => {
+				{results !== undefined &&
+					results.map((result) => {
 						return (
-							<Card key={item._id} title={item.name} owner={item.uploadedBy.name} />
+							<SearchResult
+								id={result._id}
+								key={result._id}
+								title={result.name}
+								owner={result.uploadedBy.name}
+							/>
 						)
 					})}
 			</>

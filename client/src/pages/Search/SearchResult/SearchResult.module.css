@@ -1,8 +1,9 @@
-.card {
+.search_result {
 	border: 1px solid var(--smoke);
 	padding: 1rem;
 	margin-bottom: 1rem;
+	transition: var(--transition);
 }
-.card:hover {
+.search_result:hover {
 	border: 1px solid var(--gray);
 }
