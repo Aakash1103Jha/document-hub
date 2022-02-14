@@ -1,7 +1,6 @@
 import React, { createContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import propTypes from "prop-types"
-import axios from "axios"
 
 import { validatePassword } from "../validations/validations"
 
@@ -22,16 +21,24 @@ const AuthContextProvider = ({ children, ...rest }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 	const [error, setError] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+
 	const flag = localStorage.getItem("rememberMe")
 
 	const onLogin = async (event, email, password, rememberMe, clearFields) => {
 		event.preventDefault()
+		if (!email || !password) return setError("Mandatory fields missing")
 		setIsLoading(true)
 		try {
-			const res = await axios.post("/auth/login", { email, password })
+			const res = await fetch("/auth/login", {
+				body: JSON.stringify({ email, password }),
+				headers: {
+					"Content-Type": "application/json",
+				},
+				method: "POST",
+			})
 			setIsLoading(false)
 			const { status } = res
-			if (status !== 200) return
+			if (status !== 200) return setError(await res.json())
 			clearFields()
 			localStorage.setItem("rememberMe", rememberMe)
 			setIsLoggedIn(true)
@@ -44,36 +51,43 @@ const AuthContextProvider = ({ children, ...rest }) => {
 
 	const onRegister = async (event, username, email, password, clearFields) => {
 		event.preventDefault()
+		if (!email || !password || !username) return setError("Mandatory fields missing")
 		if (validatePassword(password) === false)
 			return setError(
 				"Password must be 8 characters long, should have at least one of each: number, special character and uppercase letter",
 			)
-		try {
-			const res = await axios.post("/auth/register", { username, email, password })
-			const { status } = res
-			if (status !== 200) return
-			clearFields()
-			return navigate("/login")
-		} catch (err) {
-			console.error(err.message)
-			return setError(err.message)
-		}
+		setIsLoading(true)
+		const res = await fetch("/auth/register", {
+			body: JSON.stringify({ username, email, password }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+		})
+		setIsLoading(false)
+		const { status } = res
+		if (status !== 200) return setError(await res.json())
+		clearFields()
+		return navigate("/login")
 	}
 
 	const onResetPassword = async (event, email, password, clearFields) => {
 		event.preventDefault()
 		if (!email || !password) return setError("Mandatory fields missing")
-		try {
-			const res = await axios.post("/auth/reset-password", { email, password })
-			const { status } = res
-			if (status !== 200) return setError("Something went wrong")
-			alert(res.data)
-			clearFields()
-			return navigate("/login")
-		} catch (err) {
-			console.error(err.message)
-			return setError(err.message)
-		}
+		setIsLoading(true)
+		const res = await fetch("/auth/reset-password", {
+			body: JSON.stringify({ email, password }),
+			headers: {
+				"Content-Type": "application/json",
+			},
+			method: "POST",
+		})
+		setIsLoading(false)
+		const { status } = res
+		if (status !== 200) return setError(await res.json())
+		alert(res.data)
+		clearFields()
+		return navigate("/login")
 	}
 
 	const onLogout = async () => {

@@ -4,12 +4,14 @@ const {
 	onRegister,
 	onGetProfile,
 	onResetPassword,
+	onActivateAccount,
 } = require("../controllers/User.controller")
-const { validateToken } = require("../helpers/validation")
+const { validateToken, validateActivationToken } = require("../helpers/validation")
 
 router.post("/login", onLogin)
 router.post("/register", onRegister)
 router.get("/profile", validateToken, onGetProfile)
-router.post("/reset-password", validateToken, onResetPassword)
+router.post("/reset-password", onResetPassword)
+router.post("/activate?", validateActivationToken, onActivateAccount)
 
 module.exports = router
