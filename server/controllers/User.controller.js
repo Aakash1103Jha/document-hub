@@ -4,13 +4,13 @@ const { sign } = require("jsonwebtoken")
 const { validatePassword } = require("../helpers/validation")
 
 const onLogin = async (req, res) => {
-	if (!req.body) return res.status(400).json("Invalid input")
+	if (!req.body.email || !req.body.password) return res.status(400).json("Invalid input")
 	const { email, password } = req.body
 	try {
 		const user = await User.findOne({ email: email })
-		if (!user) return res.status(401).json("User not found")
+		if (!user) return res.status(401).json("Invalid email - user not found")
 		const validPassword = await compare(password, user.password)
-		if (!validPassword) return res.status(401).json("Invalid password")
+		if (!validPassword) return res.status(401).json("Incorrect password")
 		const token = sign({ _id: user._id, username: user.username }, process.env.TOKEN_SECRET, {
 			expiresIn: "1d",
 			noTimestamp: false,
@@ -27,12 +27,12 @@ const onLogin = async (req, res) => {
 	}
 }
 const onRegister = async (req, res) => {
-	if (!req.body) return res.status(401).json("Invalid input")
-	const { email, password } = req.body
+	if (!req.body.username || !req.body.email || !req.body.password)
+		return res.status(401).json("Looks like you forgot to fill in a mandatory field")
+	const { email } = req.body
 	try {
 		const user = await User.findOne({ email: email })
 		if (user) return res.status(401).json("Email already in use")
-		// GENERATE JWT TOKEN WITH ALL USER DATA AND SEND AS ACTIVATION LINK
 		const activationToken = sign({ ...req.body }, process.env.ACTIVATION_TOKEN_SECRET, {
 			expiresIn: "1d",
 			noTimestamp: false,
@@ -45,11 +45,11 @@ const onRegister = async (req, res) => {
 	}
 }
 const onResetPassword = async (req, res) => {
-	if (!req.body.password || !req.body.email) return res.status(401).json("No data found")
+	if (!req.body.password || !req.body.email) return res.status(401).json("Mandatory data missing")
 	const { email, password } = req.body
 	try {
 		const user = await User.findOne({ email: email })
-		if (!user) return res.status(404).json("User not found")
+		if (!user) return res.status(401).json("Invalid email - user not found")
 	} catch (err) {
 		return res.status(500).json({ Error: err.message })
 	}
