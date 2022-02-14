@@ -2,6 +2,7 @@ const User = require("../models/User")
 const { compare, genSalt, hash } = require("bcrypt")
 const { sign } = require("jsonwebtoken")
 const { validatePassword } = require("../helpers/validation")
+const mailerService = require("../helpers/nodemailer.config")
 
 const onLogin = async (req, res) => {
 	if (!req.body.email || !req.body.password) return res.status(400).json("Invalid input")
@@ -43,9 +44,10 @@ const onRegister = async (req, res) => {
 			expiresIn: "1d",
 			noTimestamp: false,
 		})
-		console.log(activationToken)
-		// LOGIC FOR NODEMAILER ACTIVATION LINK MAIL
-		//
+		await mailerService(activationToken, email).then((mail) => {
+			console.log(mail)
+			res.send(mail)
+		})
 	} catch (err) {
 		return res.status(500).json({ Error: err.message })
 	}
