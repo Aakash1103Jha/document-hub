@@ -12,6 +12,6 @@ router.post("/login", onLogin)
 router.post("/register", onRegister)
 router.get("/profile", validateToken, onGetProfile)
 router.post("/reset-password", onResetPassword)
-router.post("/activate?", validateActivationToken, onActivateAccount)
+router.get("/activate?", validateActivationToken, onActivateAccount)
 
 module.exports = router

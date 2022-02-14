@@ -26,16 +26,16 @@ const validateToken = async (req, res, next) => {
 }
 // middleware for JWT user activation
 const validateActivationToken = async (req, res, next) => {
-	if (!req.query.token) return res.status(403).json("Token not found, or has expired ⛔️")
+	if (!req.query.token) return res.status(401).json("Token not found, or has expired ⛔️")
 	const token = req.query.token
+	console.log({ token })
 	try {
 		const user = verify(token, process.env.ACTIVATION_TOKEN_SECRET, { complete: true })
-		if (!user) return res.status(403).json("Token invalid or expired. Register again. ⛔️")
+		if (!user) return res.status(401).json("Token invalid or expired. Register again. ⛔️")
 		req.user = user
 		next()
 	} catch (error) {
-		console.error(error)
-		res.status(500).json("Something went wrong")
+		return console.error(error)
 	}
 }
 
