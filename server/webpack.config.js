@@ -13,7 +13,6 @@ const VENDORS = [
 	"cookie-parser",
 	"jsonwebtoken",
 	"multer",
-	"nodemailer",
 ]
 
 module.exports = {
