@@ -2,10 +2,21 @@ const { createTransport } = require("nodemailer")
 
 const mailerService = async (token, email) => {
 	const transporter = createTransport({
-		service: "gmail",
+		// service: "gmail",
+		// auth: {
+		// 	user: process.env.EMAIL_ID,
+		// 	pass: process.env.EMAIL_PASS,
+		// },
+		host: process.env.EMAIL_HOST,
+		port: process.env.EMAIL_PORT,
+		secure: true,
 		auth: {
 			user: process.env.EMAIL_ID,
 			pass: process.env.EMAIL_PASS,
+		},
+		tls: {
+			// do not fail on invalid certs
+			rejectUnauthorized: process.env.EMAIL_REJECT,
 		},
 	})
 	const mailOptions = {
