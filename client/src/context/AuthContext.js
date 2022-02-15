@@ -68,7 +68,7 @@ const AuthContextProvider = ({ children, ...rest }) => {
 		const { status } = res
 		if (status !== 200) return setError(await res.json())
 		clearFields()
-		return navigate("/")
+		return navigate("/login")
 	}
 
 	const onResetPassword = async (event, email, password, clearFields) => {

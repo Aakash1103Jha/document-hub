@@ -1,19 +1,9 @@
-import axios from "axios"
-import React, { useEffect } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 
 import styles from "./Homepage.module.css"
 
 const Homepage = () => {
-	const getData = async () => {
-		const res = await axios.get("/docs/search?topic=flutter", {
-			withCredentials: true,
-		})
-	}
-	useEffect(() => {
-		getData()
-	}, [])
-
 	return (
 		<div className={styles.homepage}>
 			<div className={styles.hero}>
