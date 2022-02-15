@@ -26,7 +26,6 @@ const AuthPage = () => {
 		setUsername("")
 	}
 	const onSubmitHandler = (event, path) => {
-		console.log(path)
 		switch (path) {
 			case "login":
 				onLogin(event, email, password, rememberMe, clearFields)

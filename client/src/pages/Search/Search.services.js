@@ -1,16 +1,14 @@
-import axios from "axios"
-
 export const getSearchData = async (term) => {
 	if (!term) return "Enter a topic to search..."
 	try {
-		const res = await axios.get(`/docs/search?topic=${term}`)
-		if (typeof res.data === "string") {
-			alert(res.data)
+		const res = await fetch(`/docs/search?topic=${term}`)
+		const data = await res.json()
+		if (typeof data === "string") {
+			alert(data)
 		} else {
-			return res.data
+			return data
 		}
 	} catch (e) {
-		console.error(e.response.data)
-		return e.response?.data && alert(e.response?.data)
+		console.error(e)
 	}
 }
