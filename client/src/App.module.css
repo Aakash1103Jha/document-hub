@@ -8,6 +8,7 @@
 	--white: #ffffff;
 	--gray: #232323;
 	--light-gray: #323330;
+	--tag-color: lightgray;
 	--transition: 0.3s ease-in-out;
 	--gradient: linear-gradient(to right, red, orange, var(--yellow), var(--blue));
 	--min-height: calc(100vh - 9.2rem);

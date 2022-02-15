@@ -13,7 +13,7 @@ const mailerService = async (token, email) => {
 		to: `${email}`, // list of receivers
 		subject: "Nodemailer service activation", // Subject line
 		html: `
-		<p><a href='http://localhost:4000/auth/activate?token=${token}'>Click here</a> to activate your account. This link will expire in 1 hour.</p>
+		<p><a href='https://dochub-app.herokuapp.com/auth/activate?token=${token}'>Click here</a> to activate your account. This link will expire in 1 hour.</p>
 		
 		`,
 	}

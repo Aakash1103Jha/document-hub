@@ -5,7 +5,7 @@ const { validatePassword } = require("../helpers/validation")
 const mailerService = require("../helpers/nodemailer.config")
 
 const onLogin = async (req, res) => {
-	if (!req.body.email || !req.body.password) return res.status(400).json("Invalid input")
+	if (!req.body) return res.status(400).json("Invalid input")
 	const { email, password } = req.body
 	try {
 		const user = await User.findOne({ email: email })

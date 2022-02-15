@@ -1,0 +1,27 @@
+.details {
+	min-height: var(--min-height);
+	padding: 1rem;
+}
+
+.header,
+.doc_info {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+.header {
+	margin-bottom: 1rem;
+	flex-direction: column;
+}
+.tag {
+	background: var(--tag-color);
+	padding: 0.3rem 0.5rem;
+	margin-top: 0.5rem;
+}
+.doc_info {
+	justify-content: space-around;
+}
+.all_info {
+	outline: 1px solid var(--smoke);
+}

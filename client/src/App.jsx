@@ -13,7 +13,7 @@ import { AuthContext } from "./context/AuthContext"
 const Homepage = lazy(() => import("./pages/Homepage/Homepage"))
 const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 const Search = lazy(() => import("./pages/Search/Search"))
-const SearchDetail = lazy(() => import("./pages/Search/SearchDetail/SearchDetail"))
+const Details = lazy(() => import("./pages/Details/Details"))
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
 
 const App = () => {
@@ -99,7 +99,7 @@ const App = () => {
 						path="/search/:id"
 						element={
 							<Suspense fallback={<Loader />}>
-								<SearchDetail />
+								<Details />
 							</Suspense>
 						}
 					/>
