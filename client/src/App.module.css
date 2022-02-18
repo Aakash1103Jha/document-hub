@@ -19,7 +19,7 @@
 	box-sizing: border-box;
 	font-family: "Montserrat", sans-serif;
 	overflow-x: hidden;
-	font-size: calc(65% + 0.8vmin);
+	font-size: calc(1rem + 0.2vmin);
 }
 .App {
 	width: 100vw;
