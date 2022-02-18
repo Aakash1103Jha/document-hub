@@ -90,6 +90,19 @@ const Navbar = ({ isDropdownVisible, setIsDropdownVisible }) => {
 								</NavLink>
 							</li>
 							<li
+								className={
+									isDropdownVisible === false
+										? styles.link + " " + styles.hiddenLink
+										: styles.link
+								}>
+								<NavLink
+									className={styles.a}
+									to="/profile"
+									onClick={setIsDropdownVisible.bind(null, !isDropdownVisible)}>
+									Profile
+								</NavLink>
+							</li>
+							<li
 								key="logout_link"
 								className={
 									isDropdownVisible === false

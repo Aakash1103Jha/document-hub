@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useContext, useEffect, useState } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate } from "react-router-dom"
 
 import styles from "./App.module.css"
 import Wrapper from "./components/Wrapper/Wrapper"
@@ -15,10 +15,11 @@ const NotFound = lazy(() => import("./pages/NotFound/NotFound"))
 const Search = lazy(() => import("./pages/Search/Search"))
 const Details = lazy(() => import("./pages/Details/Details"))
 const AuthPage = lazy(() => import("./pages/AuthPage/AuthPage"))
+const Profile = lazy(() => import("./pages/Profile/Profile"))
 
 const App = () => {
 	const [isDropdownVisible, setIsDropdownVisible] = useState(false)
-	const { checkRememberMe } = useContext(AuthContext)
+	const { checkRememberMe, isLoggedIn } = useContext(AuthContext)
 
 	useEffect(() => {
 		checkRememberMe()
@@ -74,15 +75,19 @@ const App = () => {
 						}
 					/>
 					{/* Private routes for logged in users */}
-					{/* <Route
+					<Route
 						key="profile_"
 						path="/profile"
 						element={
-							<Suspense fallback={<Loader />}>
-								<h1>Profile</h1>
-							</Suspense>
+							isLoggedIn === true ? (
+								<Suspense fallback={<Loader />}>
+									<Profile />
+								</Suspense>
+							) : (
+								<Navigate to="/" />
+							)
 						}
-					/> */}
+					/>
 					<Route
 						key="search_"
 						exact

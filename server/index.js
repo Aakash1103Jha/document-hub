@@ -27,7 +27,7 @@ app.use("/docs/", DocumentRoute)
 
 app.get("*", (req, res) => {
 	// for local deployment
-	// res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"))
+// 	res.sendFile(path.resolve(__dirname, "..", "client", "build", "index.html"))
 	// for production deployment
 	res.sendFile(path.resolve(__dirname, "..", "dist", "build", "index.html"))
 })

@@ -1,4 +1,6 @@
 const User = require("../models/User")
+const Profile = require("../models/Profile")
+
 const { compare, genSalt, hash } = require("bcrypt")
 const { sign } = require("jsonwebtoken")
 const { validatePassword } = require("../helpers/validation")
@@ -40,7 +42,9 @@ const onRegister = async (req, res) => {
 				)
 		const hashPassword = await hash(password, await genSalt(10))
 		const newUser = new User({ username, email, password: hashPassword })
+		const newProfile = new Profile({ email, _id: newUser._id, username })
 		await newUser.save()
+		await newProfile.save()
 		return res.status(200).json("Success")
 	} catch (err) {
 		return res.status(500).json({ Error: err.message })
@@ -71,8 +75,8 @@ const onGetProfile = async (req, res) => {
 	if (!req.user.payload._id) return res.status(401).json("Unauthorized user ⛔️")
 	const { _id } = req.user.payload
 	try {
-		const userData = await User.findById({ _id })
-		res.send(userData)
+		const userProfile = await Profile.findById({ _id })
+		res.send(userProfile)
 	} catch (err) {
 		return res.status(500).json({ Error: err.message })
 	}
